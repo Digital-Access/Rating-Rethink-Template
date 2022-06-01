@@ -1,0 +1,213 @@
+* {
+    font-family: gothamLight, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: ease 0.4s;
+    color: white;
+}
+
+@font-face {
+    font-family: gothamMed;
+    src: url(https://a.storyblok.com/f/112136/x/5e402b0b67/gotham-medium.otf);
+}
+
+@font-face {
+    font-family: gothamLight;
+    src: url(https://a.storyblok.com/f/112136/x/1e7232d46e/gotham-book.otf);
+}
+
+@font-face {
+    font-family: gothamBold;
+    src: url(https://a.storyblok.com/f/112136/x/361f778928/gotham-bold.otf);
+}
+
+.image{
+    display: none;
+    max-height: 7rem;
+    margin-right: 2rem;
+}
+
+.inputCorrect{
+    border: solid #58FFA1;
+}
+
+.inputIncorrect{
+   border: solid #F5376E;
+}
+
+body{
+    background-color: #172B49;
+    background-image: url("https://a.storyblok.com/f/112136/1920x1080/89cb45339a/colour-bg-2.jpg");
+}
+
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titleContainer{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+}
+
+.title{
+    font-size: 1.3rem;
+}
+
+.openContainer{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    column-gap: 0.4rem;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    padding-top: 0;
+
+}
+
+.openContainer p{
+    font-size: 0.8rem;
+    width: 100%;
+}
+
+.openContainer p input{
+    width: 100%;
+    color: #172B49;
+}
+
+.checkContainer {
+    width: 95%;
+    display: none;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-evenly;
+}
+
+.answer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    max-width: 6rem;
+}
+
+.answerImage {
+    max-height: 4rem;
+    max-width: auto;
+    margin-top: 1rem;
+}
+
+.input{
+    border: none;
+    background-color: white;
+    color: black;
+    padding-left: 0.3rem;
+}
+
+.revealContainer{
+    width: 100%;
+    padding: 0.76rem;
+    padding-top: 0;
+}
+
+.revealAnswers{
+    background-color: white;
+    width: 100%;
+    color: #534092;
+    text-align: center;
+    padding: 1rem;
+    font-weight: bold;
+}
+
+.revealAnswers:hover{
+    background-color: #EB5D13;
+    color: white;
+    cursor: pointer;
+}
+
+.tryAgain{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+    color: #534092;
+    text-align: center;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.tryAgain:hover{
+    background-color: #EB5D13;
+    color: white;
+    cursor: pointer;
+}
+
+.proceed{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+    color: #534092;
+    text-align: center;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.proceed:hover{
+    background-color: #EB5D13;
+    color: white;
+    cursor: pointer;
+}
+
+.celebration {
+    width: auto;
+    height: 10rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+}
+
+.celebrationContainer {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+    animation: slide-up 2s forwards;
+}
+
+.thankYou {
+    width: 78%;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.image {
+    max-height: 8rem;
+    margin-right: 2rem;
+}
+
+@media (max-width: 420px) {
+    .openContainer{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .image{
+        display: none!important;
+    }
+  
+}
+
+
+
+
