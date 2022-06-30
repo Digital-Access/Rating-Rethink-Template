@@ -1,130 +1,84 @@
 const config = {
-    title: "Write and Reveal",
-    question: "What are your top 4 blogging options?",
-    input_tags: [
-        "1.",
-        "2.",
-        "3.",
-        "4."
-    ],
-    text_answers: [
-        "Blogger",
-        "Wordpress",
-        "Wix",
-        "Tumblr"
-    ],
-    image_answers: [
-        "",
-        "",
-        "",
-        ""
-    ],
-    header_img_on: false,
-    header_img: ""
+    background_image: "https://a.storyblok.com/f/112136/1920x1080/89cb45339a/colour-bg-2.jpg",
+    background_color: "",
+    header_image: "",
+    title_one: "How confident do feel in your understanding of Webclass 2?",
+    title_two: "On a scale of 1 - 5, 1 being not confident and 5 being very confident please rate below.",
+    help_text: "Click on the appropriate unit to rate",
+    rating_image: false,
+    rated_image: "https://a.storyblok.com/f/112136/109x105/23dd36f1d0/icon-awesome-star.png",  // stars: https://a.storyblok.com/f/112136/109x105/23dd36f1d0/icon-awesome-star.png //smileys: https://a.storyblok.com/f/112136/281x290/f3f1d79645/smiley.png
+    scale_length: 5,
+    submit_background_colour: "#534092",
+    submit_text_content: "Submit",
+    thanks_message: "Thank you!",
+    thank_you_image:""
 }
 
-const mainContainer = document.getElementById("mainContainer");
-const endContainer = document.getElementById("celebrationContainer");
-const endImage = document.getElementById("celebration");
-const endMessage = document.getElementById("thankYou");
-
-endMessage.textContent = "Well done! Click the \"Next Video\" button to proceed now."
-endImage.src = ''
-
-
-const image = document.getElementById('image')
-
-if (config.header_img_on) {
-    image.src = config.header_img
-    image.style.display = 'flex'
-} else {
-    image.style.display = 'none'
+const log = (item) => {
+    console.log(item)
 }
 
+const submit = document.getElementById('submit');
+const body = document.querySelector('body');
+const headerImg = document.getElementById('headerImage');
+const header = document.getElementById('header');
+const titleOne = document.getElementById('titleOne');
+const titleTwo = document.getElementById('titleTwo');
+const helpText = document.getElementById('helpText');
+const container = document.getElementById('ratingContainer');
+const mainContainer = document.getElementById('container');
+const thankYouImage = document.getElementById('thankYouImage');
+const thankYouText = document.getElementById('thankYouMessage');
+const thanksContainer = document.getElementById('thanksContainer');
 
-const title = document.getElementById('title')
-title.textContent = config.title
+body.style.backgroundColor = config.background_color;
+body.style.backgroundImage = `url(${config.background_image})`;
+headerImage.src = config.header_image;
+titleOne.textContent = config.title_one;
+titleTwo.textContent = config.title_two;
+helpText.textContent = config.help_text;
+submit.style.backgroundColor = config.submit_background_colour;
+submit.textContent = config.submit_text_content;
+thankYouImage.src = config.thank_you_image;
+thankYouText.textContent = config.thanks_message;
 
-const question = document.getElementById('question')
-question.textContent = config.question
-
-const answerContainer = document.getElementById('openContainer')
-let i = 0
-config.input_tags.forEach(e => {
-    const newTag = document.createElement("p")
-    newTag.textContent = config.input_tags[i] + " "
-    const newInput = document.createElement("input")
-    newInput.classList.add('input');
-    newTag.appendChild(newInput)
-    answerContainer.appendChild(newTag)
-    i++
-})
-
-const checkContainer = document.getElementById('checkContainer')
-
-let j = 0
-config.text_answers.forEach(e => {
-    const newCheck = document.createElement("p")
-    newCheck.textContent = config.text_answers[j]
-    newCheck.classList.add('answer')
-    checkContainer.appendChild(newCheck)
-    j++
-})
-
-const answers = document.querySelectorAll('.answer')
-
-let k = 0
-answers.forEach(element => {
-    const newImage = document.createElement("img")
-    newImage.src = config.image_answers[k]
-    newImage.classList.add('answerImage')
-    element.appendChild(newImage)
-    k++
-})
-
-const reveal = document.getElementById("revealAnswers")
-const tryAgain = document.getElementById("tryAgain")
-const proceed = document.getElementById("proceed")
-const inputs = document.querySelectorAll('.input')
-const lowerAnswers = config.text_answers.map(element => {
-    return element.toLowerCase().trim().replace(/ /g, "");
-})
-
-const instructions = document.getElementById("instructions")
-instructions.textContent = "Click next video to proceed."
-instructions.style.display = 'none'
-
-reveal.addEventListener('click', () => {
-    proceed.style.display = 'flex';
-    reveal.style.display = 'none';
-    checkContainer.style.display = 'flex';
-    inputs.forEach(element => {
-        const userAnswer = element.value.toLowerCase().trim().replace(/ /g, "");
-        if (lowerAnswers.includes(userAnswer)) {
-            element.className = 'inputCorrect'
-            element.style.pointerEvents = 'none'
-            instructions.style.display = 'none'
-        } else {
-            element.className = 'inputIncorrect'
-            element.style.pointerEvents = 'none'
-            tryAgain.style.display = 'flex';
-            instructions.style.display = 'none'
+submit.style.pointerEvents = 'none'
+const rate = (event) => { 
+    submit.style.pointerEvents = 'all'
+    const findIndex = Array.prototype.indexOf.call(event.currentTarget.parentNode.children, event.currentTarget)
+    if ('click') {
+        for (let index = 0; index < config.scale_length; index++) {
+            container.children[index].style.filter = 'grayscale(100%)'
         }
-    });
-})
+        for (let index = 0; index <= findIndex; index++) {
+            container.children[index].style.filter = 'none'
+        }
+        const finalRating = findIndex+1
+    }
+};
 
-
-
-endContainer.style.display = 'none'
-
-
-const endScreen = () => {
-    endContainer.style.display = 'flex';
-    mainContainer.style.display = 'none';
+for (let index = 0; index < config.scale_length; index++) {
+    log(index)
+    const ratingLength = index + 1;
+    const ratingNumber = document.createElement('p');
+    ratingNumber.textContent = ratingLength;
+    ratingNumber.className = 'rartingNumber'
+    const ratingImage = document.createElement('img');
+    ratingImage.src = config.rated_image;
+    ratingImage.className = 'ratingImage';
+    const ratingContainer = document.createElement('div');
+    ratingContainer.className = 'ratingSection';
+    ratingContainer.appendChild(ratingImage);
+    ratingContainer.appendChild(ratingNumber);
+    container.appendChild(ratingContainer);
+    ratingContainer.addEventListener('click', rate)
 }
 
-proceed.addEventListener('click', endScreen)
-
-tryAgain.addEventListener('click', () => {
-    window.location.reload()
-})
+const sayThankYou = () => {
+    mainContainer.removeChild(header);
+    mainContainer.removeChild(container);
+    mainContainer.removeChild(helpText);
+    mainContainer.removeChild(submit);
+    thanksContainer.style.display = 'flex'
+}
+submit.addEventListener('click', sayThankYou);
